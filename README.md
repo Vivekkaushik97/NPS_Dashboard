@@ -36,14 +36,38 @@ firebase emulators:start --only hosting
 
 ## Deploy with Firebase
 
-Sign in with the Firebase CLI if needed, then deploy Hosting:
+### 1. Authenticate with Firebase
+Sign in to your Google account that owns the Firebase project (run `--reauth` if your session has expired):
 
 ```sh
-firebase login
+firebase login --reauth
+```
+
+### 2. Confirm or Set Target Project
+Check which Firebase project is currently selected:
+
+```sh
+firebase use
+```
+
+The default project is configured as `mru-nps-dashboard` in `.firebaserc`. To select or switch projects:
+
+```sh
+# Use the configured default project
+firebase use mru-nps-dashboard
+
+# Or add/select a different Firebase project
+firebase use --add
+```
+
+### 3. Deploy Hosting
+Deploy the static assets from the `public` directory:
+
+```sh
 firebase deploy --only hosting
 ```
 
-The default Firebase project is set in `.firebaserc`.
+Once deployment completes, the CLI will output your live URL (e.g. `https://mru-nps-dashboard.web.app`).
 
 ## Dependencies
 
