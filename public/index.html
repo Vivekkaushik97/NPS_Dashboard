@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MRU NPS Dashboard</title>
+
+<link rel="stylesheet" href="assets/css/dashboard.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="assets/js/charts.js" defer></script>
+<script src="assets/js/chart-data.js" defer></script>
+<script src="assets/js/navigation.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo-ring">
+      <div class="logo-ring-inner">MRU</div>
+    </div>
+    <div class="header-title">
+      <h1>NPS DASHBOARD</h1>
+      <p>SENTIMETER — We Are Listening · Manav Rachna University</p>
+    </div>
+  </div>
+  <div class="header-badge">AY 2024–2026</div>
+</div>
+
+<!-- YEAR TABS -->
+<div class="year-tabs">
+  <button class="year-tab active" onclick="switchYear('2025')">AY 2024–25</button>
+  <button class="year-tab" onclick="switchYear('2026')">AY 2025–26</button>
+  <button class="year-tab" onclick="switchYear('compare')">2025 vs 2026</button>
+</div>
+
+<!-- ===================== 2025 YEAR PANEL ===================== -->
+<div id="year-2025" class="panel active">
+  <div class="main">
+
+    <!-- Section Tabs -->
+    <div class="section-tabs">
+      <button class="section-tab active" onclick="switchSection('2025','overview', event)">Overview</button>
+      <button class="section-tab" onclick="switchSection('2025','schools', event)">Schools</button>
+      <button class="section-tab" onclick="switchSection('2025','programs', event)">Programs</button>
+      <button class="section-tab" onclick="switchSection('2025','departments', event)">Departments</button>
+      <button class="section-tab" onclick="switchSection('2025','specializations', event)">Specializations</button>
+      <button class="section-tab" onclick="switchSection('2025','yearwise', event)">Year-Wise</button>
+      <button class="section-tab" onclick="switchSection('2025','services', event)">Services</button>
+    </div>
+
+    <!-- OVERVIEW 2025 -->
+    <div id="2025-overview" class="panel active">
+      <div class="kpi-grid">
+        <div class="kpi-card" style="--card-color:#ef4444">
+          <div class="kpi-label">Overall NPS</div>
+          <div class="kpi-value">−23.5</div>
+          <div class="kpi-sub">AY 2024–25</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#94a3b8">
+          <div class="kpi-label">Total Responses</div>
+          <div class="kpi-value">2,493</div>
+          <div class="kpi-sub">84.16% response rate</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#22c55e">
+          <div class="kpi-label">Promoters</div>
+          <div class="kpi-value">600</div>
+          <div class="kpi-sub">24.06%</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#eab308">
+          <div class="kpi-label">Passives</div>
+          <div class="kpi-value">707</div>
+          <div class="kpi-sub">28.35%</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#ef4444">
+          <div class="kpi-label">Detractors</div>
+          <div class="kpi-value">1,186</div>
+          <div class="kpi-sub">47.57%</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#22c55e">
+          <div class="kpi-label">Best School</div>
+          <div class="kpi-value">+15.22</div>
+          <div class="kpi-sub">School of Sciences</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#ef4444">
+          <div class="kpi-label">Worst School</div>
+          <div class="kpi-value">−29.38</div>
+          <div class="kpi-sub">School of Engineering</div>
+        </div>
+      </div>
+
+      <div class="alert-grid">
+        <div class="alert-box warn">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-text"><strong>Immediate Intervention</strong>47.57% Detractors — nearly half of students dissatisfied</div>
+        </div>
+        <div class="alert-box good">
+          <div class="alert-icon">✅</div>
+          <div class="alert-text"><strong>Best Performing</strong>School of Sciences (+15.22) — only positive NPS</div>
+        </div>
+        <div class="alert-box warn">
+          <div class="alert-icon">🔴</div>
+          <div class="alert-text"><strong>Critical Area</strong>Examination Process (−55.50) & Cloud DevOps (−77.3)</div>
+        </div>
+      </div>
+
+      <div class="chart-grid-2">
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>NPS Category Distribution</div>
+          <canvas id="donut2025"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>School-Wise NPS</div>
+          <canvas id="schoolBar2025"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHOOLS 2025 -->
+    <div id="2025-schools" class="panel">
+      <div class="chart-card" style="margin-bottom:16px">
+        <div class="chart-title"><span class="chart-title-dot"></span>School-Wise NPS Score 2025</div>
+        <div style="margin-bottom:20px">
+          <div class="bar-nps-row"><div class="bar-nps-label">School of Sciences</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:57.6%;background:linear-gradient(90deg,#22c55e,#16a34a)">+15.22</div></div></div>
+          <div class="bar-nps-row"><div class="bar-nps-label">Sch. of Education & Humanities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:48.3%;background:linear-gradient(90deg,#eab308,#ca8a04)">−3.33</div></div></div>
+          <div class="bar-nps-row"><div class="bar-nps-label">School of Management</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:37%;background:linear-gradient(90deg,#f97316,#ea580c)">−25.60</div></div></div>
+          <div class="bar-nps-row"><div class="bar-nps-label">School of Law</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:37.2%;background:linear-gradient(90deg,#f97316,#ea580c)">−25.63</div></div></div>
+          <div class="bar-nps-row"><div class="bar-nps-label">School of Engineering</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:35.3%;background:linear-gradient(90deg,#ef4444,#dc2626)">−29.38</div></div></div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title"><span class="chart-title-dot"></span>Promoters vs Detractors by School</div>
+        <table class="data-table">
+          <thead>
+            <tr><th>School</th><th>Promoters</th><th>Promoters%</th><th>Detractors</th><th>Detractors%</th><th>Total</th><th>NPS</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>School of Sciences</td><td>36</td><td>39.13%</td><td>22</td><td>23.91%</td><td>92</td><td><span class="nps-pill nps-pos">+15.22</span></td></tr>
+            <tr><td>School of Education & Humanities</td><td>89</td><td>32.96%</td><td>98</td><td>36.29%</td><td>270</td><td><span class="nps-pill nps-neg-low">−3.33</span></td></tr>
+            <tr><td>School of Management & Commerce</td><td>108</td><td>23.63%</td><td>225</td><td>49.23%</td><td>457</td><td><span class="nps-pill nps-neg-mid">−25.60</span></td></tr>
+            <tr><td>School of Law</td><td>115</td><td>24.15%</td><td>237</td><td>49.78%</td><td>476</td><td><span class="nps-pill nps-neg-mid">−25.63</span></td></tr>
+            <tr><td>School of Engineering</td><td>252</td><td>21.03%</td><td>604</td><td>50.41%</td><td>1198</td><td><span class="nps-pill nps-neg-high">−29.38</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROGRAMS 2025 -->
+    <div id="2025-programs" class="panel">
+      <!-- School Filter -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+        <span style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;">Filter by School:</span>
+        <div class="school-filter-group" id="schoolFilter2025">
+          <button class="school-filter-btn active" onclick="filterSchool2025('all',this)">All Schools</button>
+          <button class="school-filter-btn" onclick="filterSchool2025('soe',this)">Engineering</button>
+          <button class="school-filter-btn" onclick="filterSchool2025('somc',this)">Management & Commerce</button>
+          <button class="school-filter-btn" onclick="filterSchool2025('sol',this)">Law</button>
+          <button class="school-filter-btn" onclick="filterSchool2025('soeh',this)">Ed & Humanities</button>
+          <button class="school-filter-btn" onclick="filterSchool2025('sos',this)">Sciences</button>
+        </div>
+      </div>
+
+      <!-- School of Engineering -->
+      <div class="prog-school-block prog-soe">
+        <div class="section-divider"><div class="section-divider-label">School of Engineering</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-3">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>UG Programs (Dept-wise)</div>
+            <canvas id="engUG2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PG Programs</div>
+            <canvas id="engPG2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PhD Programs</div>
+            <canvas id="engPhD2025"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- School of Management & Commerce -->
+      <div class="prog-school-block prog-somc">
+        <div class="section-divider"><div class="section-divider-label">School of Management &amp; Commerce</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-3">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>Program Level NPS (UG/PG/PhD)</div>
+            <canvas id="somc2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>UG Specializations (BBA)</div>
+            <canvas id="somcUG2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>MBA (PG) Program NPS</div>
+            <canvas id="somcPG2025"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- School of Law -->
+      <div class="prog-school-block prog-sol">
+        <div class="section-divider"><div class="section-divider-label">School of Law</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-3">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>UG Law Programs</div>
+            <canvas id="law2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PG Program (LLM)</div>
+            <canvas id="lawPG2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PhD Program (Law)</div>
+            <canvas id="lawPhD2025"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- School of Education & Humanities -->
+      <div class="prog-school-block prog-soeh">
+        <div class="section-divider"><div class="section-divider-label">School of Education &amp; Humanities</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-3">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>UG Programs</div>
+            <canvas id="soehUG2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>Program Level (UG/PG/PhD)</div>
+            <canvas id="soehProg2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PhD (Ed &amp; Humanities)</div>
+            <canvas id="soehPhD2025"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- School of Sciences -->
+      <div class="prog-school-block prog-sos">
+        <div class="section-divider"><div class="section-divider-label">School of Sciences</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-3">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>UG Programs</div>
+            <canvas id="sosUG2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PG (M.Sc)</div>
+            <canvas id="sosPG2025"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PhD (Sciences)</div>
+            <canvas id="sosPhD2025"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPARTMENTS 2025 -->
+    <div id="2025-departments" class="panel">
+      <div class="section-divider"><div class="section-divider-label">School of Engineering — Departments</div><div class="section-divider-line"></div></div>
+      <table class="data-table" style="margin-bottom:16px">
+        <thead><tr><th>Department</th><th>Detractors%</th><th>Promoters%</th><th>Total</th><th>NPS Score</th></tr></thead>
+        <tbody>
+          <tr><td>Computer Science & Tech (CST)</td><td>54.46%</td><td>17.56%</td><td>1019</td><td><span class="nps-pill nps-neg-high">−36.89</span></td></tr>
+          <tr><td>Electronics & Communication (ECE)</td><td>33.78%</td><td>28.37%</td><td>74</td><td><span class="nps-pill nps-neg-low">−5.41</span></td></tr>
+          <tr><td>Mechanical Engineering (ME)</td><td>14.28%</td><td>57.14%</td><td>49</td><td><span class="nps-pill nps-pos">+42.86</span></td></tr>
+        </tbody>
+      </table>
+      <div class="chart-grid-2">
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>Department NPS Comparison</div>
+          <canvas id="deptBar2025"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Management — UG Programs</div>
+          <canvas id="mgtDept2025"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIALIZATIONS 2025 -->
+    <div id="2025-specializations" class="panel">
+      <div class="section-divider"><div class="section-divider-label">CSE/CST Specializations — School of Engineering</div><div class="section-divider-line"></div></div>
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="spec-name">Cloud DevOps & Automation</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:3%;background:#ef4444"></div></div>
+            <div class="spec-score" style="color:#ef4444">−77.3</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">Full Stack Development</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:19%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−41.9</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">Robotics & AI</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:19%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−41.9</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">AI & Machine Learning</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:22%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−38.8</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">CS Engineering (Core)</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:24%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−34.3</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">Cyber Security & Threat Intel</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:24%;background:#eab308"></div></div>
+            <div class="spec-score" style="color:#eab308">−33.9</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider" style="margin-top:24px"><div class="section-divider-label">School of Engineering — PhD Specializations</div><div class="section-divider-line"></div></div>
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="spec-name">PhD — ME</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:75%;background:#22c55e"></div></div>
+            <div class="spec-score" style="color:#22c55e">+50.0</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">PhD — ECE</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:60%;background:#22c55e"></div></div>
+            <div class="spec-score" style="color:#22c55e">+33.3</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">PhD — CST</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:55%;background:#22c55e"></div></div>
+            <div class="spec-score" style="color:#22c55e">+9.52</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider" style="margin-top:24px"><div class="section-divider-label">School of Management — UG Specializations</div><div class="section-divider-line"></div></div>
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="spec-name">Global Healthcare Management</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:40%;background:#eab308"></div></div>
+            <div class="spec-score" style="color:#eab308">−10.0</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">Entrepreneurship & Family Biz</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:30%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−26.9</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">Global Operations Management</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:24%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−37.9</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">Finance & Accounts</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:22%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−38.7</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">Business Analytics</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:20%;background:#ef4444"></div></div>
+            <div class="spec-score" style="color:#ef4444">−40.5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YEAR-WISE 2025 -->
+    <div id="2025-yearwise" class="panel">
+      <div class="section-divider"><div class="section-divider-label">CST — Year Wise NPS</div><div class="section-divider-line"></div></div>
+      <div class="year-row">
+        <div class="year-card"><div class="year-card-label">1st Year</div><div class="year-card-value" style="color:#ef4444">−48.65</div></div>
+        <div class="year-card"><div class="year-card-label">2nd Year</div><div class="year-card-value" style="color:#ef4444">−35.90</div></div>
+        <div class="year-card"><div class="year-card-label">3rd Year</div><div class="year-card-value" style="color:#ef4444">−38.30</div></div>
+        <div class="year-card"><div class="year-card-label">4th Year</div><div class="year-card-value" style="color:#eab308">−14.80</div></div>
+      </div>
+
+      <div class="section-divider"><div class="section-divider-label">ECE — Year Wise NPS</div><div class="section-divider-line"></div></div>
+      <div class="year-row">
+        <div class="year-card"><div class="year-card-label">1st Year</div><div class="year-card-value" style="color:#ef4444">−21.43</div></div>
+        <div class="year-card"><div class="year-card-label">2nd Year</div><div class="year-card-value" style="color:#22c55e">+4.55</div></div>
+        <div class="year-card"><div class="year-card-label">3rd Year</div><div class="year-card-value" style="color:#22c55e">+6.25</div></div>
+        <div class="year-card"><div class="year-card-label">4th Year</div><div class="year-card-value" style="color:#94a3b8">0.00</div></div>
+      </div>
+
+      <div class="section-divider"><div class="section-divider-label">ME — Year Wise NPS</div><div class="section-divider-line"></div></div>
+      <div class="year-row">
+        <div class="year-card"><div class="year-card-label">1st Year</div><div class="year-card-value" style="color:#22c55e">+28.57</div></div>
+        <div class="year-card"><div class="year-card-label">2nd Year</div><div class="year-card-value" style="color:#22c55e">+52.94</div></div>
+        <div class="year-card"><div class="year-card-label">3rd Year</div><div class="year-card-value" style="color:#22c55e">+33.33</div></div>
+        <div class="year-card"><div class="year-card-label">4th Year</div><div class="year-card-value" style="color:#22c55e">+55.56</div></div>
+      </div>
+
+      <div class="section-divider"><div class="section-divider-label">School of Law — Program Year Wise</div><div class="section-divider-line"></div></div>
+      <div class="chart-grid-2">
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>BBA LLB Year Wise</div>
+          <canvas id="bballb2025"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>BA LLB Year Wise</div>
+          <canvas id="ballb2025"></canvas>
+        </div>
+      </div>
+
+      <div class="section-divider"><div class="section-divider-label">School of Management — BBA Year Wise</div><div class="section-divider-line"></div></div>
+      <div class="chart-grid-2">
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>Finance & Accounts</div>
+          <canvas id="bbaFin2025"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>Entrepreneurship & Family Biz</div>
+          <canvas id="bbaEntrepr2025"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES 2025 -->
+    <div id="2025-services" class="panel">
+      <!-- School Filter for Services -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+        <span style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;">View:</span>
+        <div class="school-filter-group" id="servFilter2025">
+          <button class="school-filter-btn active" onclick="filterServices2025('all',this)">University Overall</button>
+          <button class="school-filter-btn" onclick="filterServices2025('soe',this)">Engineering</button>
+          <button class="school-filter-btn" onclick="filterServices2025('somc',this)">Management &amp; Commerce</button>
+          <button class="school-filter-btn" onclick="filterServices2025('sol',this)">Law</button>
+          <button class="school-filter-btn" onclick="filterServices2025('soeh',this)">Ed &amp; Humanities</button>
+          <button class="school-filter-btn" onclick="filterServices2025('sos',this)">Sciences</button>
+        </div>
+      </div>
+
+      <!-- OVERALL SERVICES -->
+      <div class="serv-block serv-all-2025">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>University — Services NPS Score 2025</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:44.7%;background:linear-gradient(90deg,#eab308,#ca8a04)">−10.59</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum/Teaching</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43%;background:linear-gradient(90deg,#eab308,#ca8a04)">−13.96</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43.7%;background:linear-gradient(90deg,#eab308,#ca8a04)">−12.56</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Culture &amp; Activities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.6%;background:linear-gradient(90deg,#f97316,#ea580c)">−18.85</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:39.2%;background:linear-gradient(90deg,#f97316,#ea580c)">−21.70</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; IT Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:35.5%;background:linear-gradient(90deg,#ef4444,#dc2626)">−29.00</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43%;background:linear-gradient(90deg,#eab308,#ca8a04)">−14.07</div></div></div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>Services NPS by School (2025)</div>
+          <canvas id="servicesSchool2025" style="max-height:320px"></canvas>
+        </div>
+      </div>
+
+      <!-- SoE SERVICES -->
+      <div class="serv-block serv-soe-2025" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Engineering — Services NPS 2025</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:39.8%;background:linear-gradient(90deg,#f97316,#ea580c)">−20.37</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum/Teaching</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.4%;background:linear-gradient(90deg,#f97316,#ea580c)">−19.12</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:42.1%;background:linear-gradient(90deg,#eab308,#ca8a04)">−15.78</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Culture &amp; Activities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:38.6%;background:linear-gradient(90deg,#f97316,#ea580c)">−24.96</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:39.3%;background:linear-gradient(90deg,#f97316,#ea580c)">−21.37</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; IT Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:33.3%;background:linear-gradient(90deg,#ef4444,#dc2626)">−33.31</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:38.3%;background:linear-gradient(90deg,#f97316,#ea580c)">−23.79</div></div></div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>SoE — Services Radar 2025</div>
+          <canvas id="soeSvRadar2025" style="max-height:300px"></canvas>
+        </div>
+      </div>
+
+      <!-- SoMC SERVICES -->
+      <div class="serv-block serv-somc-2025" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Management &amp; Commerce — Services NPS 2025</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43.9%;background:linear-gradient(90deg,#eab308,#ca8a04)">−12.04</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum/Teaching</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:41.1%;background:linear-gradient(90deg,#f97316,#ea580c)">−17.72</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:42.5%;background:linear-gradient(90deg,#eab308,#ca8a04)">−15.10</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Culture &amp; Activities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:38.9%;background:linear-gradient(90deg,#f97316,#ea580c)">−22.10</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.7%;background:linear-gradient(90deg,#f97316,#ea580c)">−13.79</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; IT Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:36.9%;background:linear-gradient(90deg,#ef4444,#dc2626)">−26.48</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:42.1%;background:linear-gradient(90deg,#eab308,#ca8a04)">−15.75</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SoL SERVICES -->
+      <div class="serv-block serv-sol-2025" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Law — Services NPS 2025</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:45.5%;background:linear-gradient(90deg,#eab308,#ca8a04)">−9.03</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum/Teaching</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.4%;background:linear-gradient(90deg,#f97316,#ea580c)">−19.12</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43.8%;background:linear-gradient(90deg,#eab308,#ca8a04)">−12.39</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Culture &amp; Activities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:38.3%;background:linear-gradient(90deg,#f97316,#ea580c)">−23.32</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.5%;background:linear-gradient(90deg,#f97316,#ea580c)">−18.91</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; IT Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:32.2%;background:linear-gradient(90deg,#ef4444,#dc2626)">−35.50</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:38.9%;background:linear-gradient(90deg,#f97316,#ea580c)">−22.27</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SoEH SERVICES -->
+      <div class="serv-block serv-soeh-2025" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Education &amp; Humanities — Services NPS 2025</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:44.4%;background:linear-gradient(90deg,#eab308,#ca8a04)">−11.11</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum/Teaching</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:45.2%;background:linear-gradient(90deg,#eab308,#ca8a04)">−9.63</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:46.3%;background:linear-gradient(90deg,#eab308,#ca8a04)">−7.41</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Culture &amp; Activities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:42%;background:linear-gradient(90deg,#eab308,#ca8a04)">−15.93</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:42.4%;background:linear-gradient(90deg,#eab308,#ca8a04)">−5.19</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; IT Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:41.5%;background:linear-gradient(90deg,#f97316,#ea580c)">−17.04</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:44.8%;background:linear-gradient(90deg,#eab308,#ca8a04)">−10.37</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SoS SERVICES -->
+      <div class="serv-block serv-sos-2025" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Sciences — Services NPS 2025 <span style="font-size:11px;color:var(--green);margin-left:8px;">★ Best Performing School</span></div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:76%;background:linear-gradient(90deg,#22c55e,#16a34a)">+26.09</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum/Teaching</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:51%;background:linear-gradient(90deg,#94a3b8,#64748b)">+2.17</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:76%;background:linear-gradient(90deg,#22c55e,#16a34a)">+26.09</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Culture &amp; Activities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:64%;background:linear-gradient(90deg,#22c55e,#16a34a)">+14.13</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:70.7%;background:linear-gradient(90deg,#22c55e,#16a34a)">+20.65</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; IT Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:63%;background:linear-gradient(90deg,#22c55e,#16a34a)">+13.04</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:63%;background:linear-gradient(90deg,#22c55e,#16a34a)">+13.04</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== 2026 YEAR PANEL ===================== -->
+<div id="year-2026" class="panel">
+  <div class="main">
+    <div class="section-tabs">
+      <button class="section-tab active" onclick="switchSection('2026','overview', event)">Overview</button>
+      <button class="section-tab" onclick="switchSection('2026','schools', event)">Schools</button>
+      <button class="section-tab" onclick="switchSection('2026','programs', event)">Programs</button>
+      <button class="section-tab" onclick="switchSection('2026','departments', event)">Departments</button>
+      <button class="section-tab" onclick="switchSection('2026','specializations', event)">Specializations</button>
+      <button class="section-tab" onclick="switchSection('2026','yearwise', event)">Year-Wise</button>
+      <button class="section-tab" onclick="switchSection('2026','services', event)">Services</button>
+    </div>
+
+    <!-- OVERVIEW 2026 -->
+    <div id="2026-overview" class="panel active">
+      <div class="kpi-grid">
+        <div class="kpi-card" style="--card-color:#f97316">
+          <div class="kpi-label">Overall NPS</div>
+          <div class="kpi-value">−19.19</div>
+          <div class="kpi-sub">AY 2025–26 <span class="kpi-delta delta-up">▲ +4.31 pts</span></div>
+        </div>
+        <div class="kpi-card" style="--card-color:#94a3b8">
+          <div class="kpi-label">Total Responses</div>
+          <div class="kpi-value">2,608</div>
+          <div class="kpi-sub">86%+ response rate</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#22c55e">
+          <div class="kpi-label">Promoters</div>
+          <div class="kpi-value">677</div>
+          <div class="kpi-sub">25.95% <span class="delta-up">▲</span></div>
+        </div>
+        <div class="kpi-card" style="--card-color:#eab308">
+          <div class="kpi-label">Passives</div>
+          <div class="kpi-value">735</div>
+          <div class="kpi-sub">28.18%</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#ef4444">
+          <div class="kpi-label">Detractors</div>
+          <div class="kpi-value">1,196</div>
+          <div class="kpi-sub">45.85% <span class="delta-up">▼</span></div>
+        </div>
+        <div class="kpi-card" style="--card-color:#22c55e">
+          <div class="kpi-label">Best School</div>
+          <div class="kpi-value">+20.75</div>
+          <div class="kpi-sub">School of Sciences</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#ef4444">
+          <div class="kpi-label">Worst School</div>
+          <div class="kpi-value">−25.10</div>
+          <div class="kpi-sub">School of Law</div>
+        </div>
+      </div>
+
+      <div class="alert-grid">
+        <div class="alert-box warn">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-text"><strong>SoEH Major Decline</strong>Dropped from −3.33 to −19.61 — largest single drop (−16 pts)</div>
+        </div>
+        <div class="alert-box good">
+          <div class="alert-icon">✅</div>
+          <div class="alert-text"><strong>Engineering Recovered</strong>NPS improved by +9.85 pts, highest school improvement</div>
+        </div>
+        <div class="alert-box info">
+          <div class="alert-icon">📈</div>
+          <div class="alert-text"><strong>Overall Improvement</strong>University NPS improved by 4.31 points year-over-year</div>
+        </div>
+      </div>
+
+      <div class="chart-grid-2">
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>NPS Category Distribution</div>
+          <canvas id="donut2026"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>School-Wise NPS 2026</div>
+          <canvas id="schoolBar2026"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHOOLS 2026 -->
+    <div id="2026-schools" class="panel">
+      <div class="chart-card" style="margin-bottom:16px">
+        <div class="chart-title"><span class="chart-title-dot"></span>School-Wise NPS Score 2026</div>
+        <div style="margin-bottom:20px">
+          <div class="bar-nps-row"><div class="bar-nps-label">School of Sciences</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:60.4%;background:linear-gradient(90deg,#22c55e,#16a34a)">+20.75</div></div></div>
+          <div class="bar-nps-row"><div class="bar-nps-label">School of Education & Humanities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.2%;background:linear-gradient(90deg,#f97316,#ea580c)">−19.61</div></div></div>
+          <div class="bar-nps-row"><div class="bar-nps-label">School of Engineering</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.2%;background:linear-gradient(90deg,#f97316,#ea580c)">−19.53</div></div></div>
+          <div class="bar-nps-row"><div class="bar-nps-label">School of Business</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:39.6%;background:linear-gradient(90deg,#f97316,#ea580c)">−20.80</div></div></div>
+          <div class="bar-nps-row"><div class="bar-nps-label">School of Law</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:37.5%;background:linear-gradient(90deg,#f97316,#ea580c)">−25.10</div></div></div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title"><span class="chart-title-dot"></span>Promoters vs Detractors 2026</div>
+        <table class="data-table">
+          <thead><tr><th>School</th><th>Promoters</th><th>%</th><th>Detractors</th><th>%</th><th>Passives</th><th>Total</th><th>NPS</th></tr></thead>
+          <tbody>
+            <tr><td>School of Sciences</td><td>25</td><td>47.17%</td><td>14</td><td>26.42%</td><td>14</td><td>53</td><td><span class="nps-pill nps-pos">+20.75</span></td></tr>
+            <tr><td>School of Education & Hum.</td><td>57</td><td>22.35%</td><td>107</td><td>41.96%</td><td>91</td><td>255</td><td><span class="nps-pill nps-neg-mid">−19.61</span></td></tr>
+            <tr><td>School of Engineering</td><td>360</td><td>25.48%</td><td>636</td><td>45.01%</td><td>417</td><td>1413</td><td><span class="nps-pill nps-neg-mid">−19.53</span></td></tr>
+            <tr><td>School of Business</td><td>108</td><td>27.07%</td><td>191</td><td>47.87%</td><td>100</td><td>399</td><td><span class="nps-pill nps-neg-mid">−20.80</span></td></tr>
+            <tr><td>School of Law</td><td>127</td><td>25.92%</td><td>250</td><td>51.02%</td><td>113</td><td>490</td><td><span class="nps-pill nps-neg-mid">−25.10</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROGRAMS 2026 -->
+    <div id="2026-programs" class="panel">
+      <!-- School Filter -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+        <span style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;">Filter by School:</span>
+        <div class="school-filter-group" id="schoolFilter2026">
+          <button class="school-filter-btn active" onclick="filterSchool2026('all',this)">All Schools</button>
+          <button class="school-filter-btn" onclick="filterSchool2026('soe',this)">Engineering</button>
+          <button class="school-filter-btn" onclick="filterSchool2026('sob',this)">Business</button>
+          <button class="school-filter-btn" onclick="filterSchool2026('sol',this)">Law</button>
+          <button class="school-filter-btn" onclick="filterSchool2026('soeh',this)">Ed &amp; Humanities</button>
+          <button class="school-filter-btn" onclick="filterSchool2026('sos',this)">Sciences</button>
+        </div>
+      </div>
+
+      <!-- School of Education & Humanities -->
+      <div class="prog-school-block prog2026-soeh">
+        <div class="section-divider"><div class="section-divider-label">School of Education &amp; Humanities</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-3">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>Program Level (UG/PG/PhD)</div>
+            <canvas id="soehProg2026"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>UG Programs</div>
+            <canvas id="soehUG2026"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PhD (Ed &amp; Humanities)</div>
+            <canvas id="soehPhD2026"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- School of Sciences -->
+      <div class="prog-school-block prog2026-sos">
+        <div class="section-divider"><div class="section-divider-label">School of Sciences</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-3">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PG / PhD Programs</div>
+            <canvas id="sosProg2026"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PhD NPS (Sciences)</div>
+            <canvas id="sosPhD2026"></canvas>
+          </div>
+          <div class="chart-card" style="background:rgba(34,197,94,0.05);border-color:rgba(34,197,94,0.3)">
+            <div class="chart-title"><span class="chart-title-dot" style="background:#22c55e"></span>Top Performer 2026</div>
+            <div style="display:flex;align-items:center;justify-content:center;height:180px;flex-direction:column;gap:8px">
+              <div style="font-family:'Rajdhani',sans-serif;font-size:52px;font-weight:700;color:#22c55e">+20.75</div>
+              <div style="font-size:12px;color:var(--text-muted)">Best School NPS in 2026</div>
+              <div style="font-size:11px;color:var(--green);font-weight:600">▲ +5.53 vs 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- School of Business -->
+      <div class="prog-school-block prog2026-sob">
+        <div class="section-divider"><div class="section-divider-label">School of Business</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-2">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>Program Level NPS (UG/PG/PhD)</div>
+            <canvas id="sobProg2026"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>UG Specializations</div>
+            <canvas id="sobUGSpec2026"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- School of Engineering -->
+      <div class="prog-school-block prog2026-soe">
+        <div class="section-divider"><div class="section-divider-label">School of Engineering</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-2">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>UG Department NPS</div>
+            <canvas id="soeProgUG2026"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PhD (Engineering)</div>
+            <canvas id="soePhD2026"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- School of Law -->
+      <div class="prog-school-block prog2026-sol">
+        <div class="section-divider"><div class="section-divider-label">School of Law</div><div class="section-divider-line"></div></div>
+        <div class="chart-grid-3">
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>UG Law Programs</div>
+            <canvas id="solUG2026"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PG Programs (LLM)</div>
+            <canvas id="solPG2026"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title"><span class="chart-title-dot"></span>PhD (Law)</div>
+            <canvas id="solPhD2026"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPARTMENTS 2026 -->
+    <div id="2026-departments" class="panel">
+      <div class="section-divider"><div class="section-divider-label">School of Engineering — Department NPS 2026</div><div class="section-divider-line"></div></div>
+      <table class="data-table" style="margin-bottom:16px">
+        <thead><tr><th>Department</th><th>Detractors%</th><th>Promoters%</th><th>Total</th><th>NPS 2026</th><th>NPS 2025</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td>CST</td><td>49.31%</td><td>21.40%</td><td>1093</td><td><span class="nps-pill nps-neg-high">−27.90</span></td><td><span class="nps-pill nps-neg-high">−35.06</span></td><td class="delta-up">▲ +7.16</td></tr>
+          <tr><td>ECE</td><td>25.96%</td><td>43.26%</td><td>104</td><td><span class="nps-pill nps-pos">+17.31</span></td><td><span class="nps-pill nps-neg-low">−2.47</span></td><td class="delta-up">▲ +19.78</td></tr>
+          <tr><td>ME</td><td>35.63%</td><td>34.48%</td><td>87</td><td><span class="nps-pill nps-neg-low">−1.15</span></td><td><span class="nps-pill nps-pos">+43.64</span></td><td class="delta-down">▼ −44.79</td></tr>
+          <tr><td>Robotics & AI</td><td>36.14%</td><td>31.32%</td><td>83</td><td><span class="nps-pill nps-neg-low">−4.82</span></td><td><span class="nps-pill nps-neg-high">−41.9</span></td><td class="delta-up">▲ +37.08</td></tr>
+        </tbody>
+      </table>
+      <div class="chart-grid-2">
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>Department NPS 2026</div>
+          <canvas id="deptBar2026"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>Department NPS Change YoY</div>
+          <canvas id="deptChange2026"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIALIZATIONS 2026 -->
+    <div id="2026-specializations" class="panel">
+      <div class="section-divider"><div class="section-divider-label">CST — 1st Year Specializations</div><div class="section-divider-line"></div></div>
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="spec-name">Full Stack Development (FSD)</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:83%;background:#22c55e"></div></div>
+            <div class="spec-score" style="color:#22c55e">+66.7</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">BCA Cloud Computing</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:50%;background:#94a3b8"></div></div>
+            <div class="spec-score" style="color:#94a3b8">0.00</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">BCA FinTech</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:43%;background:#eab308"></div></div>
+            <div class="spec-score" style="color:#eab308">−14.3</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">AI & Machine Learning</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:33%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−34.8</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">CS Engineering (Core)</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:26%;background:#ef4444"></div></div>
+            <div class="spec-score" style="color:#ef4444">−48.3</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">Gen AI</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:25%;background:#ef4444"></div></div>
+            <div class="spec-score" style="color:#ef4444">−50.0</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">CSTI</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:19%;background:#ef4444"></div></div>
+            <div class="spec-score" style="color:#ef4444">−61.5</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider" style="margin-top:24px"><div class="section-divider-label">CST — 2nd Year Specializations</div><div class="section-divider-line"></div></div>
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="spec-name">Full Stack Development</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:79%;background:#22c55e"></div></div>
+            <div class="spec-score" style="color:#22c55e">+57.1</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">CSTI</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:45%;background:#eab308"></div></div>
+            <div class="spec-score" style="color:#eab308">−9.52</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">AI & Machine Learning</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:34%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−31.2</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">CS Engineering (Core)</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:27%;background:#ef4444"></div></div>
+            <div class="spec-score" style="color:#ef4444">−45.5</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider" style="margin-top:24px"><div class="section-divider-label">CST — 3rd Year Specializations</div><div class="section-divider-line"></div></div>
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="spec-name">CSTI</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:50%;background:#94a3b8"></div></div>
+            <div class="spec-score" style="color:#94a3b8">0.00</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">Full Stack Development</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:36%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−28.6</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">CS Engineering (Core)</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:33%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−35.0</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-name">AI & Machine Learning</div>
+          <div class="spec-bar-wrap">
+            <div class="spec-bar-track"><div class="spec-bar-fill" style="width:31%;background:#f97316"></div></div>
+            <div class="spec-score" style="color:#f97316">−37.5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YEAR-WISE 2026 -->
+    <div id="2026-yearwise" class="panel">
+      <div class="section-divider"><div class="section-divider-label">CST — Year Wise NPS 2026</div><div class="section-divider-line"></div></div>
+      <div class="year-row">
+        <div class="year-card"><div class="year-card-label">1st Year</div><div class="year-card-value" style="color:#ef4444">−38.97</div></div>
+        <div class="year-card"><div class="year-card-label">2nd Year</div><div class="year-card-value" style="color:#ef4444">−35.93</div></div>
+        <div class="year-card"><div class="year-card-label">3rd Year</div><div class="year-card-value" style="color:#f97316">−30.86</div></div>
+        <div class="year-card"><div class="year-card-label">4th Year</div><div class="year-card-value" style="color:#22c55e">+1.79</div></div>
+      </div>
+
+      <div class="section-divider"><div class="section-divider-label">ECE — Year Wise NPS 2026</div><div class="section-divider-line"></div></div>
+      <div class="year-row">
+        <div class="year-card"><div class="year-card-label">1st Year</div><div class="year-card-value" style="color:#22c55e">+8.11</div></div>
+        <div class="year-card"><div class="year-card-label">2nd Year</div><div class="year-card-value" style="color:#22c55e">+17.14</div></div>
+        <div class="year-card"><div class="year-card-label">3rd Year</div><div class="year-card-value" style="color:#22c55e">+10.00</div></div>
+        <div class="year-card"><div class="year-card-label">4th Year</div><div class="year-card-value" style="color:#22c55e">+58.33</div></div>
+      </div>
+
+      <div class="section-divider"><div class="section-divider-label">ME — Year Wise NPS 2026</div><div class="section-divider-line"></div></div>
+      <div class="year-row">
+        <div class="year-card"><div class="year-card-label">1st Year</div><div class="year-card-value" style="color:#eab308">−2.04</div></div>
+        <div class="year-card"><div class="year-card-label">2nd Year</div><div class="year-card-value" style="color:#22c55e">+11.76</div></div>
+        <div class="year-card"><div class="year-card-label">3rd Year</div><div class="year-card-value" style="color:#ef4444">−58.33</div></div>
+        <div class="year-card"><div class="year-card-label">4th Year</div><div class="year-card-value" style="color:#22c55e">+55.56</div></div>
+      </div>
+
+      <div class="section-divider"><div class="section-divider-label">Robotics & AI — Year Wise NPS 2026</div><div class="section-divider-line"></div></div>
+      <div class="year-row">
+        <div class="year-card"><div class="year-card-label">1st Year</div><div class="year-card-value" style="color:#eab308">−2.70</div></div>
+        <div class="year-card"><div class="year-card-label">2nd Year</div><div class="year-card-value" style="color:#ef4444">−80.00</div></div>
+        <div class="year-card"><div class="year-card-label">3rd Year</div><div class="year-card-value" style="color:#22c55e">+7.14</div></div>
+        <div class="year-card"><div class="year-card-label">4th Year</div><div class="year-card-value" style="color:#22c55e">+18.18</div></div>
+      </div>
+
+      <div class="section-divider"><div class="section-divider-label">School of Education & Humanities — BA BED Year Wise</div><div class="section-divider-line"></div></div>
+      <div class="year-row">
+        <div class="year-card"><div class="year-card-label">1st Year</div><div class="year-card-value" style="color:#ef4444">−66.67</div></div>
+        <div class="year-card"><div class="year-card-label">2nd Year</div><div class="year-card-value" style="color:#f97316">−11.53</div></div>
+        <div class="year-card"><div class="year-card-label">3rd Year</div><div class="year-card-value" style="color:#f97316">−20.00</div></div>
+        <div class="year-card"><div class="year-card-label">4th Year</div><div class="year-card-value" style="color:#eab308">−2.77</div></div>
+      </div>
+    </div>
+
+    <!-- SERVICES 2026 -->
+    <div id="2026-services" class="panel">
+      <!-- School Filter for Services 2026 -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+        <span style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;">View:</span>
+        <div class="school-filter-group" id="servFilter2026">
+          <button class="school-filter-btn active" onclick="filterServices2026('all',this)">University Overall</button>
+          <button class="school-filter-btn" onclick="filterServices2026('soe',this)">Engineering</button>
+          <button class="school-filter-btn" onclick="filterServices2026('sob',this)">Business</button>
+          <button class="school-filter-btn" onclick="filterServices2026('sol',this)">Law</button>
+          <button class="school-filter-btn" onclick="filterServices2026('soeh',this)">Ed &amp; Humanities</button>
+          <button class="school-filter-btn" onclick="filterServices2026('sos',this)">Sciences</button>
+        </div>
+      </div>
+
+      <!-- OVERALL -->
+      <div class="serv-block serv-all-2026">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>University — Services NPS Score 2026</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:48.1%;background:linear-gradient(90deg,#eab308,#ca8a04)">−3.83</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum Quality</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:48.1%;background:linear-gradient(90deg,#eab308,#ca8a04)">−3.72</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:44.2%;background:linear-gradient(90deg,#eab308,#ca8a04)">−11.66</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Life &amp; Activities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43.8%;background:linear-gradient(90deg,#eab308,#ca8a04)">−12.42</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43.1%;background:linear-gradient(90deg,#eab308,#ca8a04)">−13.77</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">University Reputation</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.7%;background:linear-gradient(90deg,#f97316,#ea580c)">−18.56</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Personal Wellbeing</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:39.7%;background:linear-gradient(90deg,#f97316,#ea580c)">−20.63</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Academic Support</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:38.9%;background:linear-gradient(90deg,#f97316,#ea580c)">−22.16</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:37.8%;background:linear-gradient(90deg,#f97316,#ea580c)">−24.35</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; Digital Portal</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:33%;background:linear-gradient(90deg,#ef4444,#dc2626)">−33.93</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SoE SERVICES 2026 -->
+      <div class="serv-block serv-soe-2026" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Engineering — Services NPS 2026</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:47.4%;background:linear-gradient(90deg,#eab308,#ca8a04)">−5.24</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum Quality</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:45.9%;background:linear-gradient(90deg,#eab308,#ca8a04)">−8.21</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43%;background:linear-gradient(90deg,#eab308,#ca8a04)">−14.01</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Life</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43.2%;background:linear-gradient(90deg,#eab308,#ca8a04)">−13.52</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:41.5%;background:linear-gradient(90deg,#f97316,#ea580c)">−16.91</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">University Reputation</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:39.2%;background:linear-gradient(90deg,#f97316,#ea580c)">−21.66</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Personal Wellbeing</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:39%;background:linear-gradient(90deg,#f97316,#ea580c)">−22.29</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Academic Support</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:39.4%;background:linear-gradient(90deg,#f97316,#ea580c)">−21.16</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:38.5%;background:linear-gradient(90deg,#f97316,#ea580c)">−23.00</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; Digital Portal</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:31.5%;background:linear-gradient(90deg,#ef4444,#dc2626)">−36.23</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Mentorship</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:44.3%;background:linear-gradient(90deg,#eab308,#ca8a04)">−11.39</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SoB SERVICES 2026 -->
+      <div class="serv-block serv-sob-2026" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Business — Services NPS 2026</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Mentorship</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:50.8%;background:linear-gradient(90deg,#22c55e,#16a34a)">+1.51</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum Quality</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:52.1%;background:linear-gradient(90deg,#22c55e,#16a34a)">+4.27</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:49.5%;background:linear-gradient(90deg,#eab308,#ca8a04)">−1.01</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:47.6%;background:linear-gradient(90deg,#eab308,#ca8a04)">−4.77</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Life</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:46.6%;background:linear-gradient(90deg,#eab308,#ca8a04)">−6.78</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:48.4%;background:linear-gradient(90deg,#eab308,#ca8a04)">−3.27</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Personal Wellbeing</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:43.8%;background:linear-gradient(90deg,#eab308,#ca8a04)">−12.31</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">University Reputation</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:42.3%;background:linear-gradient(90deg,#eab308,#ca8a04)">−15.33</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.8%;background:linear-gradient(90deg,#f97316,#ea580c)">−18.34</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Academic Support</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.3%;background:linear-gradient(90deg,#f97316,#ea580c)">−20.35</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; Digital Portal</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:35.7%;background:linear-gradient(90deg,#ef4444,#dc2626)">−28.64</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SoL SERVICES 2026 -->
+      <div class="serv-block serv-sol-2026" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Law — Services NPS 2026</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Mentorship</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:46.1%;background:linear-gradient(90deg,#eab308,#ca8a04)">−7.76</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum Quality</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:49.2%;background:linear-gradient(90deg,#eab308,#ca8a04)">−1.63</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:47.2%;background:linear-gradient(90deg,#eab308,#ca8a04)">−5.51</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:41.3%;background:linear-gradient(90deg,#f97316,#ea580c)">−17.35</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Life</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.5%;background:linear-gradient(90deg,#f97316,#ea580c)">−18.98</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.7%;background:linear-gradient(90deg,#f97316,#ea580c)">−18.16</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">University Reputation</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:39%;background:linear-gradient(90deg,#f97316,#ea580c)">−21.84</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Personal Wellbeing</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:37.3%;background:linear-gradient(90deg,#ef4444,#dc2626)">−25.31</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Academic Support</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:37.8%;background:linear-gradient(90deg,#f97316,#ea580c)">−29.39</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:33.8%;background:linear-gradient(90deg,#ef4444,#dc2626)">−32.45</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; Digital Portal</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:32.3%;background:linear-gradient(90deg,#ef4444,#dc2626)">−34.69</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SoEH SERVICES 2026 -->
+      <div class="serv-block serv-soeh-2026" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Education &amp; Humanities — Services NPS 2026</div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum Quality</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:49.4%;background:linear-gradient(90deg,#eab308,#ca8a04)">−1.18</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Mentorship</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:47.4%;background:linear-gradient(90deg,#eab308,#ca8a04)">−5.12</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Life</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:46.8%;background:linear-gradient(90deg,#eab308,#ca8a04)">−6.30</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">University Reputation</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:46.1%;background:linear-gradient(90deg,#eab308,#ca8a04)">−7.87</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:46.3%;background:linear-gradient(90deg,#eab308,#ca8a04)">−7.48</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:47.8%;background:linear-gradient(90deg,#eab308,#ca8a04)">−4.33</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:44.7%;background:linear-gradient(90deg,#eab308,#ca8a04)">−10.63</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">IIC</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:41.5%;background:linear-gradient(90deg,#f97316,#ea580c)">−16.93</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Personal Wellbeing</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:40.3%;background:linear-gradient(90deg,#f97316,#ea580c)">−20.47</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Academic Support</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:37.4%;background:linear-gradient(90deg,#f97316,#ea580c)">−25.20</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:34.5%;background:linear-gradient(90deg,#ef4444,#dc2626)">−31.10</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; Digital Portal</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:32.3%;background:linear-gradient(90deg,#ef4444,#dc2626)">−35.43</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SoS SERVICES 2026 -->
+      <div class="serv-block serv-sos-2026" style="display:none">
+        <div class="chart-card" style="margin-bottom:16px">
+          <div class="chart-title"><span class="chart-title-dot"></span>School of Sciences — Services NPS 2026 <span style="font-size:11px;color:var(--green);margin-left:8px;">★ Mostly Positive</span></div>
+          <div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Examination Process</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:80.2%;background:linear-gradient(90deg,#22c55e,#16a34a)">+30.19</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Mentorship</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:76.4%;background:linear-gradient(90deg,#22c55e,#16a34a)">+26.42</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Registrar Office</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:78.3%;background:linear-gradient(90deg,#22c55e,#16a34a)">+28.30</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Curriculum Quality</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:74.5%;background:linear-gradient(90deg,#22c55e,#16a34a)">+24.53</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Facilities</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:70.8%;background:linear-gradient(90deg,#22c55e,#16a34a)">+20.75</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Academic Support</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:68.9%;background:linear-gradient(90deg,#22c55e,#16a34a)">+18.87</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">University Reputation</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:68.9%;background:linear-gradient(90deg,#22c55e,#16a34a)">+18.87</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">University Career</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:57.6%;background:linear-gradient(90deg,#22c55e,#16a34a)">+7.55</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Campus Life</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:55.7%;background:linear-gradient(90deg,#22c55e,#16a34a)">+5.66</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Personal Wellbeing</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:53.8%;background:linear-gradient(90deg,#22c55e,#16a34a)">+3.77</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Library Services</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:51.9%;background:linear-gradient(90deg,#22c55e,#16a34a)">+1.89</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">Wi-Fi &amp; Digital Portal</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:51.9%;background:linear-gradient(90deg,#22c55e,#16a34a)">+1.89</div></div></div>
+            <div class="bar-nps-row"><div class="bar-nps-label">CRC</div><div class="bar-nps-track"><div class="bar-nps-fill" style="width:47.2%;background:linear-gradient(90deg,#eab308,#ca8a04)">−5.66</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== COMPARISON PANEL ===================== -->
+<div id="year-compare" class="panel">
+  <div class="main">
+    <div class="section-tabs">
+      <button class="section-tab active" onclick="switchSection('compare','overview', event)">University</button>
+      <button class="section-tab" onclick="switchSection('compare','schools', event)">Schools</button>
+      <button class="section-tab" onclick="switchSection('compare','departments', event)">Departments</button>
+      <button class="section-tab" onclick="switchSection('compare','services', event)">Services</button>
+    </div>
+
+    <!-- COMPARE OVERVIEW -->
+    <div id="compare-overview" class="panel active">
+      <div class="kpi-grid">
+        <div class="kpi-card" style="--card-color:#ef4444">
+          <div class="kpi-label">NPS 2025</div>
+          <div class="kpi-value">−23.5</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#f97316">
+          <div class="kpi-label">NPS 2026</div>
+          <div class="kpi-value">−19.19</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#22c55e">
+          <div class="kpi-label">NPS Change</div>
+          <div class="kpi-value">+4.31</div>
+          <div class="kpi-sub">Improvement</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#94a3b8">
+          <div class="kpi-label">Responses 2025</div>
+          <div class="kpi-value">2,493</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#94a3b8">
+          <div class="kpi-label">Responses 2026</div>
+          <div class="kpi-value">2,608</div>
+          <div class="kpi-sub">+115 more</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#22c55e">
+          <div class="kpi-label">Promoters</div>
+          <div class="kpi-value">+1.89%</div>
+          <div class="kpi-sub">24.06% → 25.95%</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#22c55e">
+          <div class="kpi-label">Detractors</div>
+          <div class="kpi-value">−1.71%</div>
+          <div class="kpi-sub">47.57% → 45.86%</div>
+        </div>
+      </div>
+
+      <div class="chart-grid-2">
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>Overall NPS Trend</div>
+          <canvas id="overallTrend"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><span class="chart-title-dot"></span>Category % Comparison</div>
+          <canvas id="catCompare"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARE SCHOOLS -->
+    <div id="compare-schools" class="panel">
+      <div class="chart-card" style="margin-bottom:16px">
+        <div class="chart-title"><span class="chart-title-dot"></span>School NPS: 2025 vs 2026</div>
+        <canvas id="schoolCompare" style="max-height:320px"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title"><span class="chart-title-dot"></span>School-Wise Comparison Table</div>
+        <div class="compare-row" style="border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:4px">
+          <div class="compare-label" style="color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:0.8px">School</div>
+          <div class="compare-val" style="color:var(--text-muted);font-size:11px">2025</div>
+          <div class="compare-arrow"></div>
+          <div class="compare-val" style="color:var(--text-muted);font-size:11px">2026</div>
+          <div class="compare-delta" style="color:var(--text-muted);font-size:11px">Change</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">School of Sciences</div>
+          <div class="compare-val" style="color:#22c55e">+15.22</div>
+          <div class="compare-arrow">→</div>
+          <div class="compare-val" style="color:#22c55e">+20.75</div>
+          <div class="compare-delta delta-up">▲ +5.53</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">School of Engineering</div>
+          <div class="compare-val" style="color:#ef4444">−29.38</div>
+          <div class="compare-arrow">→</div>
+          <div class="compare-val" style="color:#f97316">−19.53</div>
+          <div class="compare-delta delta-up">▲ +9.85</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">School of Business / Mgmt</div>
+          <div class="compare-val" style="color:#f97316">−25.60</div>
+          <div class="compare-arrow">→</div>
+          <div class="compare-val" style="color:#f97316">−20.80</div>
+          <div class="compare-delta delta-up">▲ +4.80</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">School of Law</div>
+          <div class="compare-val" style="color:#f97316">−25.63</div>
+          <div class="compare-arrow">→</div>
+          <div class="compare-val" style="color:#f97316">−25.10</div>
+          <div class="compare-delta delta-up">▲ +0.53</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">School of Education & Hum.</div>
+          <div class="compare-val" style="color:#eab308">−3.33</div>
+          <div class="compare-arrow">→</div>
+          <div class="compare-val" style="color:#f97316">−19.61</div>
+          <div class="compare-delta delta-down">▼ −16.28</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARE DEPARTMENTS -->
+    <div id="compare-departments" class="panel">
+      <div class="chart-card" style="margin-bottom:16px">
+        <div class="chart-title"><span class="chart-title-dot"></span>Engineering Departments NPS: 2025 vs 2026</div>
+        <canvas id="deptCompare" style="max-height:300px"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <div class="compare-row" style="border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:4px">
+          <div class="compare-label" style="color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:0.8px">Department</div>
+          <div class="compare-val" style="color:var(--text-muted);font-size:11px">2025</div>
+          <div class="compare-arrow"></div>
+          <div class="compare-val" style="color:var(--text-muted);font-size:11px">2026</div>
+          <div class="compare-delta" style="color:var(--text-muted);font-size:11px">Change</div>
+        </div>
+        <div class="compare-row"><div class="compare-label">CST</div><div class="compare-val" style="color:#ef4444">−35.06</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#ef4444">−27.90</div><div class="compare-delta delta-up">▲ +7.16</div></div>
+        <div class="compare-row"><div class="compare-label">ECE</div><div class="compare-val" style="color:#eab308">−2.47</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#22c55e">+17.31</div><div class="compare-delta delta-up">▲ +19.78</div></div>
+        <div class="compare-row"><div class="compare-label">ME</div><div class="compare-val" style="color:#22c55e">+43.64</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#eab308">−1.15</div><div class="compare-delta delta-down">▼ −44.79</div></div>
+        <div class="compare-row"><div class="compare-label">Robotics & AI</div><div class="compare-val" style="color:#f97316">−41.90</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#eab308">−4.82</div><div class="compare-delta delta-up">▲ +37.08</div></div>
+      </div>
+    </div>
+
+    <!-- COMPARE SERVICES -->
+    <div id="compare-services" class="panel">
+      <div class="chart-card">
+        <div class="chart-title"><span class="chart-title-dot"></span>Services NPS: 2025 vs 2026</div>
+        <canvas id="servicesCompare" style="max-height:340px"></canvas>
+      </div>
+      <div style="margin-top:16px" class="chart-card">
+        <div class="compare-row"><div class="compare-label">Library Services</div><div class="compare-val" style="color:#eab308">−10.59</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#f97316">−24.35</div><div class="compare-delta delta-down">▼ −13.76</div></div>
+        <div class="compare-row"><div class="compare-label">Examination Process</div><div class="compare-val" style="color:#eab308">−12.56</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#22c55e">−3.83</div><div class="compare-delta delta-up">▲ +8.73</div></div>
+        <div class="compare-row"><div class="compare-label">Wi-Fi & IT Services</div><div class="compare-val" style="color:#f97316">−29.00</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#ef4444">−33.93</div><div class="compare-delta delta-down">▼ −4.93</div></div>
+        <div class="compare-row"><div class="compare-label">Campus Culture/Life</div><div class="compare-val" style="color:#f97316">−18.85</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#eab308">−12.42</div><div class="compare-delta delta-up">▲ +6.43</div></div>
+        <div class="compare-row"><div class="compare-label">Campus Facilities</div><div class="compare-val" style="color:#f97316">−21.70</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#eab308">−13.77</div><div class="compare-delta delta-up">▲ +7.93</div></div>
+        <div class="compare-row"><div class="compare-label">Registrar Office</div><div class="compare-val" style="color:#eab308">−14.07</div><div class="compare-arrow">→</div><div class="compare-val" style="color:#eab308">−11.66</div><div class="compare-delta delta-up">▲ +2.41</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+</body>
+</html>
